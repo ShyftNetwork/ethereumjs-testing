@@ -1,5 +1,5 @@
 {
-  "name": "ethereumjs-testing",
+  "name": "@shyftnetwork/shyft_ethereumjs-testing",
   "version": "1.0.3",
   "description": "test utils for ethereumjs-*",
   "main": "index.js",
@@ -8,9 +8,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ethereumjs/ethereumjs-testing"
+    "url": "https://github.com/shyftnetwork/shyft_ethereumjs-testing"
   },
-  "author": "mjbecze <mjbecze@gmail.com>",
+  "author": "shyftnetwork",
+  "contributors": "mjbecze <mjbecze@gmail.com>",
   "license": "MPL-2.0",
   "dependencies": {
     "node-dir": "^0.1.16"
