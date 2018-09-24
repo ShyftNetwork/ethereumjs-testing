@@ -1,6 +1,6 @@
 {
   "name": "@shyftnetwork/shyft_ethereumjs-testing",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "test utils for ethereumjs-*",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,9 @@
     "url": "https://github.com/shyftnetwork/shyft_ethereumjs-testing"
   },
   "author": "shyftnetwork",
-  "contributors": ["mjbecze <mjbecze@gmail.com>"],
+  "contributors": [
+    "mjbecze <mjbecze@gmail.com>"
+  ],
   "license": "MPL-2.0",
   "dependencies": {
     "asyncawait": "^1.0.6",
