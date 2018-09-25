@@ -1,7 +1,9 @@
 version: 2
 jobs:
-  fetch-tests:
+  fetch-and-test:
     machine: true
+    node:
+      version: 10.11.0
     steps:
       - checkout
       - run:
@@ -10,17 +12,24 @@ jobs:
       - run:
           name: Update submodule
           command: cd tests && git pull origin develop
-  test:
+      - run:
+          name: Run tests
+          command: npm run test
+  publish-and-push:
     machine: true
     node:
       version: 10.11.0
     steps:
-      - run: npm run test
-  publish:
-    machine: true
-    node:
-      version: 10.11.0
-    steps:
+      - checkout
+      - run:
+          name: Pull tests submodule
+          command: git submodule init && git submodule update
+      - run:
+          name: Update submodule
+          command: cd tests && git pull origin develop
+      - run:
+          name: Run tests
+          command: cd .. && npm run test
       - run:
           name: Bump version
           command: npm version patch
@@ -30,21 +39,10 @@ jobs:
       - run:
           name: Deploy to npm
           command: npm publish --public
-  git-push:
-    machine: true
-    steps:
       - run: ./scripts/git-push.sh
+
 workflows:
   version: 2
   test-deploy:
     jobs:
-      - fetch-tests
-      - test:
-          requires:
-            - fetch-tests
-      - publish:
-          requires:
-            - test
-      - git-push:
-          requires:
-            - publish
+      - fetch-and-test
