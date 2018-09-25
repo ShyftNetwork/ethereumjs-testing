@@ -1,6 +1,7 @@
 version: 2
 jobs:
   fetch-tests:
+    machine: true
     steps:
       - run:
           name: Pull tests submodule
@@ -9,11 +10,13 @@ jobs:
           name: Update submodule
           command: cd tests && git pull origin develop
   test:
+    machine: true
     node:
       version: 10.11.0
     steps:
       - run: npm run test
   publish:
+    machine: true
     node:
       version: 10.11.0
     steps:
@@ -27,6 +30,7 @@ jobs:
           name: Deploy to npm
           command: npm publish --public
   git-push:
+    machine: true
     steps:
       - run: ./scripts/git-push.sh
 workflows:
