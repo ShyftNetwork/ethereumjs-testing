@@ -3,6 +3,7 @@ jobs:
   fetch-tests:
     machine: true
     steps:
+      - checkout
       - run:
           name: Pull tests submodule
           command: git submodule init && git submodule update
