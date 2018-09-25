@@ -1,12 +1,13 @@
 version: 2
 jobs:
   fetch-tests:
-    - run:
-        name: Pull tests submodule
-        command: git submodule init && git submodule update
-    - run:
-        name: Update submodule
-        command: cd tests && git pull origin develop
+    steps:
+      - run:
+          name: Pull tests submodule
+          command: git submodule init && git submodule update
+      - run:
+          name: Update submodule
+          command: cd tests && git pull origin develop
   test:
     node:
       version: 10.11.0
