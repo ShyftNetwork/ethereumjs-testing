@@ -1,0 +1,48 @@
+version: 2
+jobs:
+  fetch-tests:
+    - run:
+        name: Pull tests submodule
+        command: git submodule init && git submodule update
+    - run:
+        name: Update submodule
+        command: cd tests && git pull origin develop
+  test:
+    node:
+      version: 10.11.0
+    steps:
+      - run: npm run test
+  publish:
+    node:
+      version: 10.11.0
+    branches:
+      - master
+    steps:
+      - run:
+          name: Bump version
+          command: npm version patch
+      - run:
+          name: Setup NPM credentials
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+      - run:
+          name: Deploy to npm
+          command: npm publish --public
+  git-push:
+    branches:
+      - master
+    steps:
+      - run: ./scripts/git-push.sh
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - fetch-tests
+      - test:
+          requires:
+            - fetch-tests
+      - publish:
+          requires:
+            - test
+      - git-push:
+          requires:
+            - publish
