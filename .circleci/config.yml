@@ -15,8 +15,6 @@ jobs:
   publish:
     node:
       version: 10.11.0
-    branches:
-      - master
     steps:
       - run:
           name: Bump version
@@ -28,8 +26,6 @@ jobs:
           name: Deploy to npm
           command: npm publish --public
   git-push:
-    branches:
-      - master
     steps:
       - run: ./scripts/git-push.sh
 workflows:
