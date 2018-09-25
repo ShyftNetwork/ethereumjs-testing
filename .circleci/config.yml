@@ -13,6 +13,9 @@ jobs:
           name: Update submodule
           command: cd tests && git pull origin develop
       - run:
+          name: Install npm dependencies
+          command: cd .. && npm install
+      - run:
           name: Run tests
           command: npm run test
   publish-and-push:
@@ -29,7 +32,7 @@ jobs:
           command: cd tests && git pull origin develop
       - run:
           name: Install npm dependencies
-          command: ls -la
+          command: cd .. && npm install
       - run:
           name: Run tests
           command: npm run test
