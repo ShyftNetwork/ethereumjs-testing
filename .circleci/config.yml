@@ -38,7 +38,7 @@ jobs:
           command: npm run test
       - run:
           name: Bump version
-          command: npm version patch --force
+          command: npm --no-git-tag-version version patch
       - run:
           name: Setup NPM credentials
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
