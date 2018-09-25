@@ -28,8 +28,11 @@ jobs:
           name: Update submodule
           command: cd tests && git pull origin develop
       - run:
+          name: Install npm dependencies
+          command: cd .. && npm install
+      - run:
           name: Run tests
-          command: cd .. && npm i && npm run test
+          command: npm run test
       - run:
           name: Bump version
           command: npm version patch
