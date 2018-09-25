@@ -50,14 +50,14 @@ jobs:
 workflows:
   version: 2
   test-only:
-    filters:
-      branches:
-        ignore: master
     jobs:
-      - fetch-and-test
+      - fetch-and-test:
+          filters:
+            branches:
+              ignore: master
   test-deploy:
-    filters:
-      branches:
-        only: master
     jobs:
-      - publish-and-push
+      - publish-and-push:
+          filters:
+            branches:
+              only: master
