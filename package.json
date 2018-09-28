@@ -1,6 +1,6 @@
 {
   "name": "@shyftnetwork/shyft_ethereumjs-testing",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "description": "test utils for ethereumjs-*",
   "main": "index.js",
   "scripts": {
