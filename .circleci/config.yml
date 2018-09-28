@@ -41,7 +41,7 @@ jobs:
           command: npm --no-git-tag-version version patch && NEWVERSION=`node -e "console.log(require('./package.json').version);"`
       - run:
           name: Setup NPM credentials
-          command: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc && npm login
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc && npm login
       - run:
           name: Deploy to npm
           command: npm publish --public
