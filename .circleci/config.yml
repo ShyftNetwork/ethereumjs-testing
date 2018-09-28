@@ -38,10 +38,10 @@ jobs:
           command: npm run test
       - run:
           name: Bump version
-          command: npm --no-git-tag-version version patch
+          command: npm --no-git-tag-version version patch && NEWVERSION=`node -e "console.log(require('./package.json').version);"` && echo "New Version: \${NEWVERSION}"
       - run:
           name: Setup NPM credentials
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+          command: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc && npm login
       - run:
           name: Deploy to npm
           command: npm publish --public
